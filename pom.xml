@@ -199,6 +199,9 @@
                             <version>${scala.wartremover}</version>
                         </compilerPlugin>
                     </compilerPlugins>
+                    <args>
+                        <arg>-P:wartremover:only-warn-traverser:org.wartremover.warts.Unsafe</arg>
+                    </args>
                     <launchers>
                         <launcher>
                             <mainClass>com.knoldus.scalamvn.Application</mainClass>
@@ -272,6 +275,22 @@
                     <scalacPluginVersion>${scoverage.plugin-version}</scalacPluginVersion>
                     <aggregate>true</aggregate>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>scoverage_unit</id>
+                        <goals>
+                            <goal>check</goal> <!-- or integration-check -->
+                        </goals>
+                        <phase>prepare-package</phase> <!-- or any other phase -->
+                    </execution>
+                    <execution>
+                        <id>scoverage_integration</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>integration-test</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -309,5 +328,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
