@@ -12,3 +12,10 @@
 - Execute command: `$ mvn clean package`
 - Go to target folder
 - Execute command: `$ java -jar scala-maven-template-1.0-SNAPSHOT-executable.jar`
+
+## Commands for execute quality tools
+
+- `$ mvn scala:compile`     **// Compile Scala Code**
+- `$ mvn test`              **// Execute unit test cases**
+- `$ mvn scoverage:report`  **// Scala test cases coverage report**
+- `$ mvn scalastyle:check`  **// Execute scala style in our code**
