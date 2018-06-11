@@ -3,7 +3,7 @@ package com.knoldus.scalamvn.repository.impl
 import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType._
 import com.knoldus.scalamvn.models.Employee
 
-class EmployeeRepositoryImplTest extends DynamoTestTrait {
+class EmployeeRepositoryImplSuite extends DynamoTestTrait {
 
   val dDClient = new DBClient
   val employeeImpl = new EmployeeRepositoryImpl(dDClient)
