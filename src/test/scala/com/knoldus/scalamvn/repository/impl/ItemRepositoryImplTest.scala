@@ -1,11 +1,17 @@
 package com.knoldus.scalamvn.repository.impl
 
 import com.knoldus.scalamvn.models.{Code, Item}
+import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType._
 
 class ItemRepositoryImplTest extends DynamoTestTrait {
 
   val dDClient = new DBClient
   val itemImpl = new ItemRepositoryImpl(dDClient)
+
+  override def beforeAll(): Unit = {
+    super.beforeAll()
+    LocalDynamoDB.createTable(client)("asyncItems")('id -> N)
+  }
 
   it should "put the item" in {
     val id = scala.util.Random.nextInt()

@@ -6,7 +6,7 @@ import com.amazonaws.services.dynamodbv2.model._
 import scala.collection.JavaConverters._
 
 object LocalDynamoDB {
-  def createTable(client: AmazonDynamoDB)(tableName: String)(attributes: (Symbol, ScalarAttributeType)*) = {
+  def createTable(client: AmazonDynamoDB)(tableName: String)(attributes: (Symbol, ScalarAttributeType)*): CreateTableResult = {
     client.createTable(
       attributeDefinitions(attributes),
       tableName,
