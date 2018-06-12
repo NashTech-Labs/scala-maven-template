@@ -14,13 +14,12 @@
 - Execute command: `$ java -jar scala-maven-template-1.0-SNAPSHOT-executable.jar`
 
 ## PREREQUISITE
-
-- export ACCESS_KEY_ID="access_key"
-- export SECRET_KEY_ID="secret_key"
+- export AWS_ACCESS_KEY_ID=your_access_key_id
+- export AWS_SECRET_ACCESS_KEY=your_secret_access_key
 
 ## COMMANDS
 
-- `mvn clean test` for unit test`
+- `mvn clean test` for unit test
 - `mvn clean test -Pintegration-test` for integration test
 
 ## Tables in DynamoDB
