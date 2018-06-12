@@ -1,5 +1,6 @@
 package com.knoldus.scalamvn.repository.impl
 
+import com.amazonaws.auth.{AWSStaticCredentialsProvider, DefaultAWSCredentialsProviderChain}
 import com.amazonaws.client.builder.AwsClientBuilder
 import com.amazonaws.services.dynamodbv2.local.main.ServerRunner
 import com.amazonaws.services.dynamodbv2.local.server.DynamoDBProxyServer
@@ -16,9 +17,13 @@ trait DynamoTestTrait extends AsyncFlatSpec with BeforeAndAfterAll with MockitoS
     val localArgs = Array("-inMemory", "-sharedDb", "1")
     server = ServerRunner.createServerFromCommandLineArgs(localArgs)
     System.setProperty("sqlite4java.library.path", "native-libs")
-    client = AmazonDynamoDBClientBuilder.standard().withEndpointConfiguration(
-      new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", ""))
+    import com.amazonaws.auth.BasicAWSCredentials
+    val awsCredentials = new BasicAWSCredentials("dummy", "credentials")
+    client = AmazonDynamoDBClientBuilder.standard()
+      .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+      .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", ""))
       .build()
+
     server.start()
   }
 
